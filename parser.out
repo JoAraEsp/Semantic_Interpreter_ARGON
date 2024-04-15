@@ -1,0 +1,2215 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMA
+    DOT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement_list statement
+Rule 3     statement_list -> statement
+Rule 4     statement -> declaration
+Rule 5     statement -> function_definition
+Rule 6     statement -> conditional
+Rule 7     statement -> loop
+Rule 8     statement -> print_statement
+Rule 9     declaration -> type COLON ID EQUAL expression SEMICOLON
+Rule 10    type -> INT
+Rule 11    type -> FLOAT
+Rule 12    type -> STRING
+Rule 13    type -> CHAR
+Rule 14    type -> BOOL
+Rule 15    boolean -> TRUE
+Rule 16    boolean -> FALSE
+Rule 17    function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+Rule 18    conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+Rule 19    otherwise_block -> OTHERWISE LBRACE statement_list RBRACE
+Rule 20    otherwise_block -> empty
+Rule 21    loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+Rule 22    print_statement -> PRINT LPAREN expression RPAREN SEMICOLON
+Rule 23    expression -> ID
+Rule 24    expression -> NUMBER
+Rule 25    expression -> STRING_LITERAL
+Rule 26    expression -> CHAR_LITERAL
+Rule 27    expression -> boolean
+Rule 28    expression -> binary_expression
+Rule 29    binary_expression -> expression PLUS expression
+Rule 30    binary_expression -> expression MINUS expression
+Rule 31    binary_expression -> expression TIMES expression
+Rule 32    binary_expression -> expression DIVIDE expression
+Rule 33    binary_expression -> expression EQ expression
+Rule 34    binary_expression -> expression NEQ expression
+Rule 35    binary_expression -> expression GT expression
+Rule 36    binary_expression -> expression LT expression
+Rule 37    binary_expression -> expression GTE expression
+Rule 38    binary_expression -> expression LTE expression
+Rule 39    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSUMING             : 18
+BOOL                 : 14
+CHAR                 : 13
+CHAR_LITERAL         : 26
+COLON                : 9
+COMMA                : 
+DIVIDE               : 32
+DOT                  : 
+EQ                   : 33
+EQUAL                : 9
+FALSE                : 16
+FLOAT                : 11
+FUNCTION             : 17
+GT                   : 35
+GTE                  : 37
+ID                   : 9 17 23
+INT                  : 10
+LBRACE               : 17 18 19 21
+LOOP                 : 21
+LPAREN               : 17 21 22
+LT                   : 36
+LTE                  : 38
+MINUS                : 30
+NEQ                  : 34
+NUMBER               : 24
+OTHERWISE            : 19
+PLUS                 : 29
+PRINT                : 22
+RBRACE               : 17 18 19 21
+RPAREN               : 17 21 22
+SEMICOLON            : 9 22
+STRING               : 12
+STRING_LITERAL       : 25
+TIMES                : 31
+TRUE                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+binary_expression    : 28
+boolean              : 27
+conditional          : 6
+declaration          : 4
+empty                : 20
+expression           : 9 18 21 22 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38
+function_definition  : 5
+loop                 : 7
+otherwise_block      : 18
+print_statement      : 8
+program              : 0
+statement            : 2 3
+statement_list       : 1 2 17 18 19 21
+type                 : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement                      shift and go to state 19
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 3
+
+    (3) statement_list -> statement .
+
+    FUNCTION        reduce using rule 3 (statement_list -> statement .)
+    ASSUMING        reduce using rule 3 (statement_list -> statement .)
+    LOOP            reduce using rule 3 (statement_list -> statement .)
+    PRINT           reduce using rule 3 (statement_list -> statement .)
+    INT             reduce using rule 3 (statement_list -> statement .)
+    FLOAT           reduce using rule 3 (statement_list -> statement .)
+    STRING          reduce using rule 3 (statement_list -> statement .)
+    CHAR            reduce using rule 3 (statement_list -> statement .)
+    BOOL            reduce using rule 3 (statement_list -> statement .)
+    $end            reduce using rule 3 (statement_list -> statement .)
+    RBRACE          reduce using rule 3 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> declaration .
+
+    FUNCTION        reduce using rule 4 (statement -> declaration .)
+    ASSUMING        reduce using rule 4 (statement -> declaration .)
+    LOOP            reduce using rule 4 (statement -> declaration .)
+    PRINT           reduce using rule 4 (statement -> declaration .)
+    INT             reduce using rule 4 (statement -> declaration .)
+    FLOAT           reduce using rule 4 (statement -> declaration .)
+    STRING          reduce using rule 4 (statement -> declaration .)
+    CHAR            reduce using rule 4 (statement -> declaration .)
+    BOOL            reduce using rule 4 (statement -> declaration .)
+    $end            reduce using rule 4 (statement -> declaration .)
+    RBRACE          reduce using rule 4 (statement -> declaration .)
+
+
+state 5
+
+    (5) statement -> function_definition .
+
+    FUNCTION        reduce using rule 5 (statement -> function_definition .)
+    ASSUMING        reduce using rule 5 (statement -> function_definition .)
+    LOOP            reduce using rule 5 (statement -> function_definition .)
+    PRINT           reduce using rule 5 (statement -> function_definition .)
+    INT             reduce using rule 5 (statement -> function_definition .)
+    FLOAT           reduce using rule 5 (statement -> function_definition .)
+    STRING          reduce using rule 5 (statement -> function_definition .)
+    CHAR            reduce using rule 5 (statement -> function_definition .)
+    BOOL            reduce using rule 5 (statement -> function_definition .)
+    $end            reduce using rule 5 (statement -> function_definition .)
+    RBRACE          reduce using rule 5 (statement -> function_definition .)
+
+
+state 6
+
+    (6) statement -> conditional .
+
+    FUNCTION        reduce using rule 6 (statement -> conditional .)
+    ASSUMING        reduce using rule 6 (statement -> conditional .)
+    LOOP            reduce using rule 6 (statement -> conditional .)
+    PRINT           reduce using rule 6 (statement -> conditional .)
+    INT             reduce using rule 6 (statement -> conditional .)
+    FLOAT           reduce using rule 6 (statement -> conditional .)
+    STRING          reduce using rule 6 (statement -> conditional .)
+    CHAR            reduce using rule 6 (statement -> conditional .)
+    BOOL            reduce using rule 6 (statement -> conditional .)
+    $end            reduce using rule 6 (statement -> conditional .)
+    RBRACE          reduce using rule 6 (statement -> conditional .)
+
+
+state 7
+
+    (7) statement -> loop .
+
+    FUNCTION        reduce using rule 7 (statement -> loop .)
+    ASSUMING        reduce using rule 7 (statement -> loop .)
+    LOOP            reduce using rule 7 (statement -> loop .)
+    PRINT           reduce using rule 7 (statement -> loop .)
+    INT             reduce using rule 7 (statement -> loop .)
+    FLOAT           reduce using rule 7 (statement -> loop .)
+    STRING          reduce using rule 7 (statement -> loop .)
+    CHAR            reduce using rule 7 (statement -> loop .)
+    BOOL            reduce using rule 7 (statement -> loop .)
+    $end            reduce using rule 7 (statement -> loop .)
+    RBRACE          reduce using rule 7 (statement -> loop .)
+
+
+state 8
+
+    (8) statement -> print_statement .
+
+    FUNCTION        reduce using rule 8 (statement -> print_statement .)
+    ASSUMING        reduce using rule 8 (statement -> print_statement .)
+    LOOP            reduce using rule 8 (statement -> print_statement .)
+    PRINT           reduce using rule 8 (statement -> print_statement .)
+    INT             reduce using rule 8 (statement -> print_statement .)
+    FLOAT           reduce using rule 8 (statement -> print_statement .)
+    STRING          reduce using rule 8 (statement -> print_statement .)
+    CHAR            reduce using rule 8 (statement -> print_statement .)
+    BOOL            reduce using rule 8 (statement -> print_statement .)
+    $end            reduce using rule 8 (statement -> print_statement .)
+    RBRACE          reduce using rule 8 (statement -> print_statement .)
+
+
+state 9
+
+    (9) declaration -> type . COLON ID EQUAL expression SEMICOLON
+
+    COLON           shift and go to state 20
+
+
+state 10
+
+    (17) function_definition -> FUNCTION . ID LPAREN RPAREN LBRACE statement_list RBRACE
+
+    ID              shift and go to state 21
+
+
+state 11
+
+    (18) conditional -> ASSUMING . expression LBRACE statement_list RBRACE otherwise_block
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 22
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 12
+
+    (21) loop -> LOOP . LPAREN expression RPAREN LBRACE statement_list RBRACE
+
+    LPAREN          shift and go to state 31
+
+
+state 13
+
+    (22) print_statement -> PRINT . LPAREN expression RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 32
+
+
+state 14
+
+    (10) type -> INT .
+
+    COLON           reduce using rule 10 (type -> INT .)
+
+
+state 15
+
+    (11) type -> FLOAT .
+
+    COLON           reduce using rule 11 (type -> FLOAT .)
+
+
+state 16
+
+    (12) type -> STRING .
+
+    COLON           reduce using rule 12 (type -> STRING .)
+
+
+state 17
+
+    (13) type -> CHAR .
+
+    COLON           reduce using rule 13 (type -> CHAR .)
+
+
+state 18
+
+    (14) type -> BOOL .
+
+    COLON           reduce using rule 14 (type -> BOOL .)
+
+
+state 19
+
+    (2) statement_list -> statement_list statement .
+
+    FUNCTION        reduce using rule 2 (statement_list -> statement_list statement .)
+    ASSUMING        reduce using rule 2 (statement_list -> statement_list statement .)
+    LOOP            reduce using rule 2 (statement_list -> statement_list statement .)
+    PRINT           reduce using rule 2 (statement_list -> statement_list statement .)
+    INT             reduce using rule 2 (statement_list -> statement_list statement .)
+    FLOAT           reduce using rule 2 (statement_list -> statement_list statement .)
+    STRING          reduce using rule 2 (statement_list -> statement_list statement .)
+    CHAR            reduce using rule 2 (statement_list -> statement_list statement .)
+    BOOL            reduce using rule 2 (statement_list -> statement_list statement .)
+    $end            reduce using rule 2 (statement_list -> statement_list statement .)
+    RBRACE          reduce using rule 2 (statement_list -> statement_list statement .)
+
+
+state 20
+
+    (9) declaration -> type COLON . ID EQUAL expression SEMICOLON
+
+    ID              shift and go to state 33
+
+
+state 21
+
+    (17) function_definition -> FUNCTION ID . LPAREN RPAREN LBRACE statement_list RBRACE
+
+    LPAREN          shift and go to state 34
+
+
+state 22
+
+    (18) conditional -> ASSUMING expression . LBRACE statement_list RBRACE otherwise_block
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+    LBRACE          shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+
+state 23
+
+    (23) expression -> ID .
+
+    LBRACE          reduce using rule 23 (expression -> ID .)
+    PLUS            reduce using rule 23 (expression -> ID .)
+    MINUS           reduce using rule 23 (expression -> ID .)
+    TIMES           reduce using rule 23 (expression -> ID .)
+    DIVIDE          reduce using rule 23 (expression -> ID .)
+    EQ              reduce using rule 23 (expression -> ID .)
+    NEQ             reduce using rule 23 (expression -> ID .)
+    GT              reduce using rule 23 (expression -> ID .)
+    LT              reduce using rule 23 (expression -> ID .)
+    GTE             reduce using rule 23 (expression -> ID .)
+    LTE             reduce using rule 23 (expression -> ID .)
+    RPAREN          reduce using rule 23 (expression -> ID .)
+    SEMICOLON       reduce using rule 23 (expression -> ID .)
+
+
+state 24
+
+    (24) expression -> NUMBER .
+
+    LBRACE          reduce using rule 24 (expression -> NUMBER .)
+    PLUS            reduce using rule 24 (expression -> NUMBER .)
+    MINUS           reduce using rule 24 (expression -> NUMBER .)
+    TIMES           reduce using rule 24 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 24 (expression -> NUMBER .)
+    EQ              reduce using rule 24 (expression -> NUMBER .)
+    NEQ             reduce using rule 24 (expression -> NUMBER .)
+    GT              reduce using rule 24 (expression -> NUMBER .)
+    LT              reduce using rule 24 (expression -> NUMBER .)
+    GTE             reduce using rule 24 (expression -> NUMBER .)
+    LTE             reduce using rule 24 (expression -> NUMBER .)
+    RPAREN          reduce using rule 24 (expression -> NUMBER .)
+    SEMICOLON       reduce using rule 24 (expression -> NUMBER .)
+
+
+state 25
+
+    (25) expression -> STRING_LITERAL .
+
+    LBRACE          reduce using rule 25 (expression -> STRING_LITERAL .)
+    PLUS            reduce using rule 25 (expression -> STRING_LITERAL .)
+    MINUS           reduce using rule 25 (expression -> STRING_LITERAL .)
+    TIMES           reduce using rule 25 (expression -> STRING_LITERAL .)
+    DIVIDE          reduce using rule 25 (expression -> STRING_LITERAL .)
+    EQ              reduce using rule 25 (expression -> STRING_LITERAL .)
+    NEQ             reduce using rule 25 (expression -> STRING_LITERAL .)
+    GT              reduce using rule 25 (expression -> STRING_LITERAL .)
+    LT              reduce using rule 25 (expression -> STRING_LITERAL .)
+    GTE             reduce using rule 25 (expression -> STRING_LITERAL .)
+    LTE             reduce using rule 25 (expression -> STRING_LITERAL .)
+    RPAREN          reduce using rule 25 (expression -> STRING_LITERAL .)
+    SEMICOLON       reduce using rule 25 (expression -> STRING_LITERAL .)
+
+
+state 26
+
+    (26) expression -> CHAR_LITERAL .
+
+    LBRACE          reduce using rule 26 (expression -> CHAR_LITERAL .)
+    PLUS            reduce using rule 26 (expression -> CHAR_LITERAL .)
+    MINUS           reduce using rule 26 (expression -> CHAR_LITERAL .)
+    TIMES           reduce using rule 26 (expression -> CHAR_LITERAL .)
+    DIVIDE          reduce using rule 26 (expression -> CHAR_LITERAL .)
+    EQ              reduce using rule 26 (expression -> CHAR_LITERAL .)
+    NEQ             reduce using rule 26 (expression -> CHAR_LITERAL .)
+    GT              reduce using rule 26 (expression -> CHAR_LITERAL .)
+    LT              reduce using rule 26 (expression -> CHAR_LITERAL .)
+    GTE             reduce using rule 26 (expression -> CHAR_LITERAL .)
+    LTE             reduce using rule 26 (expression -> CHAR_LITERAL .)
+    RPAREN          reduce using rule 26 (expression -> CHAR_LITERAL .)
+    SEMICOLON       reduce using rule 26 (expression -> CHAR_LITERAL .)
+
+
+state 27
+
+    (27) expression -> boolean .
+
+    LBRACE          reduce using rule 27 (expression -> boolean .)
+    PLUS            reduce using rule 27 (expression -> boolean .)
+    MINUS           reduce using rule 27 (expression -> boolean .)
+    TIMES           reduce using rule 27 (expression -> boolean .)
+    DIVIDE          reduce using rule 27 (expression -> boolean .)
+    EQ              reduce using rule 27 (expression -> boolean .)
+    NEQ             reduce using rule 27 (expression -> boolean .)
+    GT              reduce using rule 27 (expression -> boolean .)
+    LT              reduce using rule 27 (expression -> boolean .)
+    GTE             reduce using rule 27 (expression -> boolean .)
+    LTE             reduce using rule 27 (expression -> boolean .)
+    RPAREN          reduce using rule 27 (expression -> boolean .)
+    SEMICOLON       reduce using rule 27 (expression -> boolean .)
+
+
+state 28
+
+    (28) expression -> binary_expression .
+
+    LBRACE          reduce using rule 28 (expression -> binary_expression .)
+    PLUS            reduce using rule 28 (expression -> binary_expression .)
+    MINUS           reduce using rule 28 (expression -> binary_expression .)
+    TIMES           reduce using rule 28 (expression -> binary_expression .)
+    DIVIDE          reduce using rule 28 (expression -> binary_expression .)
+    EQ              reduce using rule 28 (expression -> binary_expression .)
+    NEQ             reduce using rule 28 (expression -> binary_expression .)
+    GT              reduce using rule 28 (expression -> binary_expression .)
+    LT              reduce using rule 28 (expression -> binary_expression .)
+    GTE             reduce using rule 28 (expression -> binary_expression .)
+    LTE             reduce using rule 28 (expression -> binary_expression .)
+    RPAREN          reduce using rule 28 (expression -> binary_expression .)
+    SEMICOLON       reduce using rule 28 (expression -> binary_expression .)
+
+
+state 29
+
+    (15) boolean -> TRUE .
+
+    LBRACE          reduce using rule 15 (boolean -> TRUE .)
+    PLUS            reduce using rule 15 (boolean -> TRUE .)
+    MINUS           reduce using rule 15 (boolean -> TRUE .)
+    TIMES           reduce using rule 15 (boolean -> TRUE .)
+    DIVIDE          reduce using rule 15 (boolean -> TRUE .)
+    EQ              reduce using rule 15 (boolean -> TRUE .)
+    NEQ             reduce using rule 15 (boolean -> TRUE .)
+    GT              reduce using rule 15 (boolean -> TRUE .)
+    LT              reduce using rule 15 (boolean -> TRUE .)
+    GTE             reduce using rule 15 (boolean -> TRUE .)
+    LTE             reduce using rule 15 (boolean -> TRUE .)
+    RPAREN          reduce using rule 15 (boolean -> TRUE .)
+    SEMICOLON       reduce using rule 15 (boolean -> TRUE .)
+
+
+state 30
+
+    (16) boolean -> FALSE .
+
+    LBRACE          reduce using rule 16 (boolean -> FALSE .)
+    PLUS            reduce using rule 16 (boolean -> FALSE .)
+    MINUS           reduce using rule 16 (boolean -> FALSE .)
+    TIMES           reduce using rule 16 (boolean -> FALSE .)
+    DIVIDE          reduce using rule 16 (boolean -> FALSE .)
+    EQ              reduce using rule 16 (boolean -> FALSE .)
+    NEQ             reduce using rule 16 (boolean -> FALSE .)
+    GT              reduce using rule 16 (boolean -> FALSE .)
+    LT              reduce using rule 16 (boolean -> FALSE .)
+    GTE             reduce using rule 16 (boolean -> FALSE .)
+    LTE             reduce using rule 16 (boolean -> FALSE .)
+    RPAREN          reduce using rule 16 (boolean -> FALSE .)
+    SEMICOLON       reduce using rule 16 (boolean -> FALSE .)
+
+
+state 31
+
+    (21) loop -> LOOP LPAREN . expression RPAREN LBRACE statement_list RBRACE
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 46
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 32
+
+    (22) print_statement -> PRINT LPAREN . expression RPAREN SEMICOLON
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 47
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 33
+
+    (9) declaration -> type COLON ID . EQUAL expression SEMICOLON
+
+    EQUAL           shift and go to state 48
+
+
+state 34
+
+    (17) function_definition -> FUNCTION ID LPAREN . RPAREN LBRACE statement_list RBRACE
+
+    RPAREN          shift and go to state 49
+
+
+state 35
+
+    (18) conditional -> ASSUMING expression LBRACE . statement_list RBRACE otherwise_block
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement_list                 shift and go to state 50
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 36
+
+    (29) binary_expression -> expression PLUS . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 51
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 37
+
+    (30) binary_expression -> expression MINUS . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 52
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 38
+
+    (31) binary_expression -> expression TIMES . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 53
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 39
+
+    (32) binary_expression -> expression DIVIDE . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 54
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 40
+
+    (33) binary_expression -> expression EQ . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 55
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 41
+
+    (34) binary_expression -> expression NEQ . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 56
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 42
+
+    (35) binary_expression -> expression GT . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 57
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 43
+
+    (36) binary_expression -> expression LT . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 58
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 44
+
+    (37) binary_expression -> expression GTE . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 59
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 45
+
+    (38) binary_expression -> expression LTE . expression
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 60
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 46
+
+    (21) loop -> LOOP LPAREN expression . RPAREN LBRACE statement_list RBRACE
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+    RPAREN          shift and go to state 61
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+
+state 47
+
+    (22) print_statement -> PRINT LPAREN expression . RPAREN SEMICOLON
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+    RPAREN          shift and go to state 62
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+
+state 48
+
+    (9) declaration -> type COLON ID EQUAL . expression SEMICOLON
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
+
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
+
+    expression                     shift and go to state 63
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
+
+state 49
+
+    (17) function_definition -> FUNCTION ID LPAREN RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 64
+
+
+state 50
+
+    (18) conditional -> ASSUMING expression LBRACE statement_list . RBRACE otherwise_block
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    RBRACE          shift and go to state 65
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement                      shift and go to state 19
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 51
+
+    (29) binary_expression -> expression PLUS expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 29 (binary_expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 29 (binary_expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 29 (binary_expression -> expression PLUS expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! EQ              [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! NEQ             [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! GT              [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! LT              [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! GTE             [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+  ! LTE             [ reduce using rule 29 (binary_expression -> expression PLUS expression .) ]
+
+
+state 52
+
+    (30) binary_expression -> expression MINUS expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 30 (binary_expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 30 (binary_expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 30 (binary_expression -> expression MINUS expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! EQ              [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! NEQ             [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! GT              [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! LT              [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! GTE             [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+  ! LTE             [ reduce using rule 30 (binary_expression -> expression MINUS expression .) ]
+
+
+state 53
+
+    (31) binary_expression -> expression TIMES expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 31 (binary_expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 31 (binary_expression -> expression TIMES expression .)
+    SEMICOLON       reduce using rule 31 (binary_expression -> expression TIMES expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! EQ              [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! NEQ             [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! GT              [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! LT              [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! GTE             [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+  ! LTE             [ reduce using rule 31 (binary_expression -> expression TIMES expression .) ]
+
+
+state 54
+
+    (32) binary_expression -> expression DIVIDE expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 32 (binary_expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 32 (binary_expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 32 (binary_expression -> expression DIVIDE expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! EQ              [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! NEQ             [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! GT              [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! LT              [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! GTE             [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+  ! LTE             [ reduce using rule 32 (binary_expression -> expression DIVIDE expression .) ]
+
+
+state 55
+
+    (33) binary_expression -> expression EQ expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 33 (binary_expression -> expression EQ expression .)
+    RPAREN          reduce using rule 33 (binary_expression -> expression EQ expression .)
+    SEMICOLON       reduce using rule 33 (binary_expression -> expression EQ expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! TIMES           [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! EQ              [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! NEQ             [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! GT              [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! LT              [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! GTE             [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+  ! LTE             [ reduce using rule 33 (binary_expression -> expression EQ expression .) ]
+
+
+state 56
+
+    (34) binary_expression -> expression NEQ expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 34 (binary_expression -> expression NEQ expression .)
+    RPAREN          reduce using rule 34 (binary_expression -> expression NEQ expression .)
+    SEMICOLON       reduce using rule 34 (binary_expression -> expression NEQ expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! MINUS           [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! TIMES           [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! EQ              [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! NEQ             [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! GT              [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! LT              [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! GTE             [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+  ! LTE             [ reduce using rule 34 (binary_expression -> expression NEQ expression .) ]
+
+
+state 57
+
+    (35) binary_expression -> expression GT expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 35 (binary_expression -> expression GT expression .)
+    RPAREN          reduce using rule 35 (binary_expression -> expression GT expression .)
+    SEMICOLON       reduce using rule 35 (binary_expression -> expression GT expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! TIMES           [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! DIVIDE          [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! EQ              [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! NEQ             [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! GT              [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! LT              [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! GTE             [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+  ! LTE             [ reduce using rule 35 (binary_expression -> expression GT expression .) ]
+
+
+state 58
+
+    (36) binary_expression -> expression LT expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 36 (binary_expression -> expression LT expression .)
+    RPAREN          reduce using rule 36 (binary_expression -> expression LT expression .)
+    SEMICOLON       reduce using rule 36 (binary_expression -> expression LT expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! TIMES           [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! DIVIDE          [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! EQ              [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! NEQ             [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! GT              [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! LT              [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! GTE             [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+  ! LTE             [ reduce using rule 36 (binary_expression -> expression LT expression .) ]
+
+
+state 59
+
+    (37) binary_expression -> expression GTE expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 37 (binary_expression -> expression GTE expression .)
+    RPAREN          reduce using rule 37 (binary_expression -> expression GTE expression .)
+    SEMICOLON       reduce using rule 37 (binary_expression -> expression GTE expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! MINUS           [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! TIMES           [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! DIVIDE          [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! EQ              [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! NEQ             [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! GT              [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! LT              [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! GTE             [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+  ! LTE             [ reduce using rule 37 (binary_expression -> expression GTE expression .) ]
+
+
+state 60
+
+    (38) binary_expression -> expression LTE expression .
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+    LBRACE          reduce using rule 38 (binary_expression -> expression LTE expression .)
+    RPAREN          reduce using rule 38 (binary_expression -> expression LTE expression .)
+    SEMICOLON       reduce using rule 38 (binary_expression -> expression LTE expression .)
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+  ! PLUS            [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! MINUS           [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! TIMES           [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! DIVIDE          [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! EQ              [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! NEQ             [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! GT              [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! LT              [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! GTE             [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+  ! LTE             [ reduce using rule 38 (binary_expression -> expression LTE expression .) ]
+
+
+state 61
+
+    (21) loop -> LOOP LPAREN expression RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 66
+
+
+state 62
+
+    (22) print_statement -> PRINT LPAREN expression RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 67
+
+
+state 63
+
+    (9) declaration -> type COLON ID EQUAL expression . SEMICOLON
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
+
+    SEMICOLON       shift and go to state 68
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
+
+
+state 64
+
+    (17) function_definition -> FUNCTION ID LPAREN RPAREN LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement_list                 shift and go to state 69
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 65
+
+    (18) conditional -> ASSUMING expression LBRACE statement_list RBRACE . otherwise_block
+    (19) otherwise_block -> . OTHERWISE LBRACE statement_list RBRACE
+    (20) otherwise_block -> . empty
+    (39) empty -> .
+
+    OTHERWISE       shift and go to state 71
+    FUNCTION        reduce using rule 39 (empty -> .)
+    ASSUMING        reduce using rule 39 (empty -> .)
+    LOOP            reduce using rule 39 (empty -> .)
+    PRINT           reduce using rule 39 (empty -> .)
+    INT             reduce using rule 39 (empty -> .)
+    FLOAT           reduce using rule 39 (empty -> .)
+    STRING          reduce using rule 39 (empty -> .)
+    CHAR            reduce using rule 39 (empty -> .)
+    BOOL            reduce using rule 39 (empty -> .)
+    $end            reduce using rule 39 (empty -> .)
+    RBRACE          reduce using rule 39 (empty -> .)
+
+    otherwise_block                shift and go to state 70
+    empty                          shift and go to state 72
+
+state 66
+
+    (21) loop -> LOOP LPAREN expression RPAREN LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement_list                 shift and go to state 73
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 67
+
+    (22) print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .
+
+    FUNCTION        reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    ASSUMING        reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    LOOP            reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    PRINT           reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    INT             reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    FLOAT           reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    STRING          reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    CHAR            reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    BOOL            reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    $end            reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 22 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+
+
+state 68
+
+    (9) declaration -> type COLON ID EQUAL expression SEMICOLON .
+
+    FUNCTION        reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    ASSUMING        reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    LOOP            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    PRINT           reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    INT             reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    FLOAT           reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    STRING          reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    CHAR            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    BOOL            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    $end            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+    RBRACE          reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
+
+
+state 69
+
+    (17) function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list . RBRACE
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    RBRACE          shift and go to state 74
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement                      shift and go to state 19
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 70
+
+    (18) conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .
+
+    FUNCTION        reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    ASSUMING        reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    LOOP            reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    PRINT           reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    INT             reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    FLOAT           reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    STRING          reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    CHAR            reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    BOOL            reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    $end            reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+    RBRACE          reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
+
+
+state 71
+
+    (19) otherwise_block -> OTHERWISE . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 75
+
+
+state 72
+
+    (20) otherwise_block -> empty .
+
+    FUNCTION        reduce using rule 20 (otherwise_block -> empty .)
+    ASSUMING        reduce using rule 20 (otherwise_block -> empty .)
+    LOOP            reduce using rule 20 (otherwise_block -> empty .)
+    PRINT           reduce using rule 20 (otherwise_block -> empty .)
+    INT             reduce using rule 20 (otherwise_block -> empty .)
+    FLOAT           reduce using rule 20 (otherwise_block -> empty .)
+    STRING          reduce using rule 20 (otherwise_block -> empty .)
+    CHAR            reduce using rule 20 (otherwise_block -> empty .)
+    BOOL            reduce using rule 20 (otherwise_block -> empty .)
+    $end            reduce using rule 20 (otherwise_block -> empty .)
+    RBRACE          reduce using rule 20 (otherwise_block -> empty .)
+
+
+state 73
+
+    (21) loop -> LOOP LPAREN expression RPAREN LBRACE statement_list . RBRACE
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    RBRACE          shift and go to state 76
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement                      shift and go to state 19
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 74
+
+    (17) function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .
+
+    FUNCTION        reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    ASSUMING        reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    LOOP            reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    PRINT           reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    INT             reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    FLOAT           reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    STRING          reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    CHAR            reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    BOOL            reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    $end            reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
+
+
+state 75
+
+    (19) otherwise_block -> OTHERWISE LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement_list                 shift and go to state 77
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 76
+
+    (21) loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .
+
+    FUNCTION        reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    ASSUMING        reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    LOOP            reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    PRINT           reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    INT             reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    FLOAT           reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    STRING          reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    CHAR            reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    BOOL            reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    $end            reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+
+
+state 77
+
+    (19) otherwise_block -> OTHERWISE LBRACE statement_list . RBRACE
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . function_definition
+    (6) statement -> . conditional
+    (7) statement -> . loop
+    (8) statement -> . print_statement
+    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
+    (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
+    (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (22) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (10) type -> . INT
+    (11) type -> . FLOAT
+    (12) type -> . STRING
+    (13) type -> . CHAR
+    (14) type -> . BOOL
+
+    RBRACE          shift and go to state 78
+    FUNCTION        shift and go to state 10
+    ASSUMING        shift and go to state 11
+    LOOP            shift and go to state 12
+    PRINT           shift and go to state 13
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    CHAR            shift and go to state 17
+    BOOL            shift and go to state 18
+
+    statement                      shift and go to state 19
+    declaration                    shift and go to state 4
+    function_definition            shift and go to state 5
+    conditional                    shift and go to state 6
+    loop                           shift and go to state 7
+    print_statement                shift and go to state 8
+    type                           shift and go to state 9
+
+state 78
+
+    (19) otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .
+
+    FUNCTION        reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    ASSUMING        reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    LOOP            reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    PRINT           reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    INT             reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    FLOAT           reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    STRING          reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    CHAR            reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    BOOL            reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    $end            reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 19 (otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 51 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 51 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 51 resolved as shift
+WARNING: shift/reduce conflict for GT in state 51 resolved as shift
+WARNING: shift/reduce conflict for LT in state 51 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 51 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 51 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 52 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 52 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 52 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 52 resolved as shift
+WARNING: shift/reduce conflict for GT in state 52 resolved as shift
+WARNING: shift/reduce conflict for LT in state 52 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 52 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 52 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for GT in state 53 resolved as shift
+WARNING: shift/reduce conflict for LT in state 53 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 53 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 54 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 54 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 54 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 54 resolved as shift
+WARNING: shift/reduce conflict for GT in state 54 resolved as shift
+WARNING: shift/reduce conflict for LT in state 54 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 54 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 54 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 55 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 55 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 55 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 55 resolved as shift
+WARNING: shift/reduce conflict for GT in state 55 resolved as shift
+WARNING: shift/reduce conflict for LT in state 55 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 55 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 55 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 56 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 56 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 56 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 56 resolved as shift
+WARNING: shift/reduce conflict for GT in state 56 resolved as shift
+WARNING: shift/reduce conflict for LT in state 56 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 56 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 56 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 57 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 57 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 57 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 57 resolved as shift
+WARNING: shift/reduce conflict for GT in state 57 resolved as shift
+WARNING: shift/reduce conflict for LT in state 57 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 57 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 57 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 58 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 58 resolved as shift
+WARNING: shift/reduce conflict for GT in state 58 resolved as shift
+WARNING: shift/reduce conflict for LT in state 58 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 58 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 58 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 59 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 59 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 59 resolved as shift
+WARNING: shift/reduce conflict for GT in state 59 resolved as shift
+WARNING: shift/reduce conflict for LT in state 59 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 59 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 59 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 60 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 60 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 60 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 60 resolved as shift
+WARNING: shift/reduce conflict for GT in state 60 resolved as shift
+WARNING: shift/reduce conflict for LT in state 60 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 60 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 60 resolved as shift

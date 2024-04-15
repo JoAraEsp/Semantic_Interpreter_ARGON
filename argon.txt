@@ -1,0 +1,74 @@
+ARGON: Gramática Personalizada
+Declaración de Variables
+IN -> TV
+TV -> N | C
+N -> int DP L RL I D RD | float DP L RL I D RD P D RD
+C -> string DP L RL | char DP L | bool DP L RL I B
+DP -> :
+I -> =
+P -> .
+L -> a…z | A…Z
+D -> 0…9
+B -> true | false
+RL -> L RL | ε
+RD -> D RD | ε
+
+Funciones 
+IN -> Fn RD
+RD -> L RL PA PC DP LA CO LC
+L -> a…z | A…Z
+RL -> L RL | ε
+PA -> (
+PC -> )
+DP -> :
+LA -> {
+LC -> }
+CO -> print DP PA E PC
+E -> OU | OD
+OU -> L RL
+OD -> CM DL CM
+DL -> L RL | D RD
+CM -> ‘
+
+Condicional
+IN -> assuming R
+R -> C DP LA CO LC E
+C -> L RL O OP
+LA -> {
+LC -> }
+OP -> D RD | true | false | L RL | D RD P D RD
+L -> a…z | A…Z
+RL -> L RL | ε
+D -> 0…9
+RD -> D RD | ε
+O -> == | => | <= | != | > | <
+CO -> print DP PA E PC
+E -> OU | OD
+OU -> L RL
+OD -> CM DL CM
+DL -> L RL | D RD
+CM -> ‘
+OT -> otherwise DP LA CO LC
+
+Ciclo
+IN -> loop PA CC PC DP LA CO LC
+PA -> (
+PC -> )
+LA -> {
+LC -> }
+CC -> L RL O OP
+O -> == | => | <= | != | > | <
+OP -> D RD | L RL
+DP -> :
+P -> .
+L -> a…z | A…Z
+RL -> L RL | ε
+D -> 0…9
+RD -> D RL | ε
+CO -> print DP PA E PC
+E -> OU | OD
+OU -> L RL
+OD -> CM DL CM
+DL -> L RL | D RD
+CM -> ‘
+

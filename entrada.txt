@@ -1,0 +1,39 @@
+int : x = 10;
+float : y = 20.5;
+string : name = "ARGON";
+bool : is_valid = true;
+
+function myFunc() {
+  print("Hello from ARGON");
+}
+
+assuming x == 10 {
+  print("x is 10");
+} otherwise {
+  print("x is not 10");
+}
+
+loop (x < 20) {
+  print("x is less than 20");
+}
+
+__________________________
+
+int : x = 10;
+float : y = 20.5;
+string : name = "ARGON";
+bool : is_valid = true;
+
+function myFunc() {
+  print("Hello from ARGON");
+}
+
+assuming x == 10 {
+  print("x is 10");
+} otherwise {
+  print("x is not 10");
+}
+
+loop (x < 20) {
+  print("x is less than 20");
+}
