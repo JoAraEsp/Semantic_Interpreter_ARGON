@@ -9,7 +9,7 @@ def p_statement_list(p):
     '''statement_list : statement_list statement
                       | statement'''
     if len(p) == 3:
-        p[0] = p[1] + p[2]
+        p[0] = p[1] + [p[2]]
     else:
         p[0] = [p[1]]
 
@@ -22,7 +22,7 @@ def p_statement(p):
     p[0] = p[1]
 
 def p_declaration(p):
-    '''declaration : type COLON ID EQUAL expression SEMICOLON'''
+    '''declaration : type ID EQUAL expression SEMICOLON'''
     p[0] = ('declaration', p[1], p[3], p[5])
 
 def p_type(p):

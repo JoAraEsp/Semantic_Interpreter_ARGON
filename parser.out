@@ -2,6 +2,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    COLON
     COMMA
     DOT
 
@@ -16,7 +17,7 @@ Rule 5     statement -> function_definition
 Rule 6     statement -> conditional
 Rule 7     statement -> loop
 Rule 8     statement -> print_statement
-Rule 9     declaration -> type COLON ID EQUAL expression SEMICOLON
+Rule 9     declaration -> type ID EQUAL expression SEMICOLON
 Rule 10    type -> INT
 Rule 11    type -> FLOAT
 Rule 12    type -> STRING
@@ -54,7 +55,7 @@ ASSUMING             : 18
 BOOL                 : 14
 CHAR                 : 13
 CHAR_LITERAL         : 26
-COLON                : 9
+COLON                : 
 COMMA                : 
 DIVIDE               : 32
 DOT                  : 
@@ -117,7 +118,7 @@ state 0
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -163,7 +164,7 @@ state 2
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -297,9 +298,9 @@ state 8
 
 state 9
 
-    (9) declaration -> type . COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> type . ID EQUAL expression SEMICOLON
 
-    COLON           shift and go to state 20
+    ID              shift and go to state 20
 
 
 state 10
@@ -360,35 +361,35 @@ state 14
 
     (10) type -> INT .
 
-    COLON           reduce using rule 10 (type -> INT .)
+    ID              reduce using rule 10 (type -> INT .)
 
 
 state 15
 
     (11) type -> FLOAT .
 
-    COLON           reduce using rule 11 (type -> FLOAT .)
+    ID              reduce using rule 11 (type -> FLOAT .)
 
 
 state 16
 
     (12) type -> STRING .
 
-    COLON           reduce using rule 12 (type -> STRING .)
+    ID              reduce using rule 12 (type -> STRING .)
 
 
 state 17
 
     (13) type -> CHAR .
 
-    COLON           reduce using rule 13 (type -> CHAR .)
+    ID              reduce using rule 13 (type -> CHAR .)
 
 
 state 18
 
     (14) type -> BOOL .
 
-    COLON           reduce using rule 14 (type -> BOOL .)
+    ID              reduce using rule 14 (type -> BOOL .)
 
 
 state 19
@@ -410,9 +411,9 @@ state 19
 
 state 20
 
-    (9) declaration -> type COLON . ID EQUAL expression SEMICOLON
+    (9) declaration -> type ID . EQUAL expression SEMICOLON
 
-    ID              shift and go to state 33
+    EQUAL           shift and go to state 33
 
 
 state 21
@@ -669,10 +670,36 @@ state 32
 
 state 33
 
-    (9) declaration -> type COLON ID . EQUAL expression SEMICOLON
+    (9) declaration -> type ID EQUAL . expression SEMICOLON
+    (23) expression -> . ID
+    (24) expression -> . NUMBER
+    (25) expression -> . STRING_LITERAL
+    (26) expression -> . CHAR_LITERAL
+    (27) expression -> . boolean
+    (28) expression -> . binary_expression
+    (15) boolean -> . TRUE
+    (16) boolean -> . FALSE
+    (29) binary_expression -> . expression PLUS expression
+    (30) binary_expression -> . expression MINUS expression
+    (31) binary_expression -> . expression TIMES expression
+    (32) binary_expression -> . expression DIVIDE expression
+    (33) binary_expression -> . expression EQ expression
+    (34) binary_expression -> . expression NEQ expression
+    (35) binary_expression -> . expression GT expression
+    (36) binary_expression -> . expression LT expression
+    (37) binary_expression -> . expression GTE expression
+    (38) binary_expression -> . expression LTE expression
 
-    EQUAL           shift and go to state 48
+    ID              shift and go to state 23
+    NUMBER          shift and go to state 24
+    STRING_LITERAL  shift and go to state 25
+    CHAR_LITERAL    shift and go to state 26
+    TRUE            shift and go to state 29
+    FALSE           shift and go to state 30
 
+    expression                     shift and go to state 48
+    boolean                        shift and go to state 27
+    binary_expression              shift and go to state 28
 
 state 34
 
@@ -691,7 +718,7 @@ state 35
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1107,36 +1134,30 @@ state 47
 
 state 48
 
-    (9) declaration -> type COLON ID EQUAL . expression SEMICOLON
-    (23) expression -> . ID
-    (24) expression -> . NUMBER
-    (25) expression -> . STRING_LITERAL
-    (26) expression -> . CHAR_LITERAL
-    (27) expression -> . boolean
-    (28) expression -> . binary_expression
-    (15) boolean -> . TRUE
-    (16) boolean -> . FALSE
-    (29) binary_expression -> . expression PLUS expression
-    (30) binary_expression -> . expression MINUS expression
-    (31) binary_expression -> . expression TIMES expression
-    (32) binary_expression -> . expression DIVIDE expression
-    (33) binary_expression -> . expression EQ expression
-    (34) binary_expression -> . expression NEQ expression
-    (35) binary_expression -> . expression GT expression
-    (36) binary_expression -> . expression LT expression
-    (37) binary_expression -> . expression GTE expression
-    (38) binary_expression -> . expression LTE expression
+    (9) declaration -> type ID EQUAL expression . SEMICOLON
+    (29) binary_expression -> expression . PLUS expression
+    (30) binary_expression -> expression . MINUS expression
+    (31) binary_expression -> expression . TIMES expression
+    (32) binary_expression -> expression . DIVIDE expression
+    (33) binary_expression -> expression . EQ expression
+    (34) binary_expression -> expression . NEQ expression
+    (35) binary_expression -> expression . GT expression
+    (36) binary_expression -> expression . LT expression
+    (37) binary_expression -> expression . GTE expression
+    (38) binary_expression -> expression . LTE expression
 
-    ID              shift and go to state 23
-    NUMBER          shift and go to state 24
-    STRING_LITERAL  shift and go to state 25
-    CHAR_LITERAL    shift and go to state 26
-    TRUE            shift and go to state 29
-    FALSE           shift and go to state 30
+    SEMICOLON       shift and go to state 63
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    EQ              shift and go to state 40
+    NEQ             shift and go to state 41
+    GT              shift and go to state 42
+    LT              shift and go to state 43
+    GTE             shift and go to state 44
+    LTE             shift and go to state 45
 
-    expression                     shift and go to state 63
-    boolean                        shift and go to state 27
-    binary_expression              shift and go to state 28
 
 state 49
 
@@ -1154,7 +1175,7 @@ state 50
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1700,29 +1721,19 @@ state 62
 
 state 63
 
-    (9) declaration -> type COLON ID EQUAL expression . SEMICOLON
-    (29) binary_expression -> expression . PLUS expression
-    (30) binary_expression -> expression . MINUS expression
-    (31) binary_expression -> expression . TIMES expression
-    (32) binary_expression -> expression . DIVIDE expression
-    (33) binary_expression -> expression . EQ expression
-    (34) binary_expression -> expression . NEQ expression
-    (35) binary_expression -> expression . GT expression
-    (36) binary_expression -> expression . LT expression
-    (37) binary_expression -> expression . GTE expression
-    (38) binary_expression -> expression . LTE expression
+    (9) declaration -> type ID EQUAL expression SEMICOLON .
 
-    SEMICOLON       shift and go to state 68
-    PLUS            shift and go to state 36
-    MINUS           shift and go to state 37
-    TIMES           shift and go to state 38
-    DIVIDE          shift and go to state 39
-    EQ              shift and go to state 40
-    NEQ             shift and go to state 41
-    GT              shift and go to state 42
-    LT              shift and go to state 43
-    GTE             shift and go to state 44
-    LTE             shift and go to state 45
+    FUNCTION        reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    ASSUMING        reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    LOOP            reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    PRINT           reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    INT             reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    FLOAT           reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    STRING          reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    CHAR            reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    BOOL            reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    $end            reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
+    RBRACE          reduce using rule 9 (declaration -> type ID EQUAL expression SEMICOLON .)
 
 
 state 64
@@ -1735,7 +1746,7 @@ state 64
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1756,7 +1767,7 @@ state 64
     CHAR            shift and go to state 17
     BOOL            shift and go to state 18
 
-    statement_list                 shift and go to state 69
+    statement_list                 shift and go to state 68
     statement                      shift and go to state 3
     declaration                    shift and go to state 4
     function_definition            shift and go to state 5
@@ -1772,7 +1783,7 @@ state 65
     (20) otherwise_block -> . empty
     (39) empty -> .
 
-    OTHERWISE       shift and go to state 71
+    OTHERWISE       shift and go to state 70
     FUNCTION        reduce using rule 39 (empty -> .)
     ASSUMING        reduce using rule 39 (empty -> .)
     LOOP            reduce using rule 39 (empty -> .)
@@ -1785,8 +1796,8 @@ state 65
     $end            reduce using rule 39 (empty -> .)
     RBRACE          reduce using rule 39 (empty -> .)
 
-    otherwise_block                shift and go to state 70
-    empty                          shift and go to state 72
+    otherwise_block                shift and go to state 69
+    empty                          shift and go to state 71
 
 state 66
 
@@ -1798,7 +1809,7 @@ state 66
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1819,7 +1830,7 @@ state 66
     CHAR            shift and go to state 17
     BOOL            shift and go to state 18
 
-    statement_list                 shift and go to state 73
+    statement_list                 shift and go to state 72
     statement                      shift and go to state 3
     declaration                    shift and go to state 4
     function_definition            shift and go to state 5
@@ -1847,23 +1858,6 @@ state 67
 
 state 68
 
-    (9) declaration -> type COLON ID EQUAL expression SEMICOLON .
-
-    FUNCTION        reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    ASSUMING        reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    LOOP            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    PRINT           reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    INT             reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    FLOAT           reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    STRING          reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    CHAR            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    BOOL            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    $end            reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-    RBRACE          reduce using rule 9 (declaration -> type COLON ID EQUAL expression SEMICOLON .)
-
-
-state 69
-
     (17) function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list . RBRACE
     (2) statement_list -> statement_list . statement
     (4) statement -> . declaration
@@ -1871,7 +1865,7 @@ state 69
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1882,7 +1876,7 @@ state 69
     (13) type -> . CHAR
     (14) type -> . BOOL
 
-    RBRACE          shift and go to state 74
+    RBRACE          shift and go to state 73
     FUNCTION        shift and go to state 10
     ASSUMING        shift and go to state 11
     LOOP            shift and go to state 12
@@ -1901,7 +1895,7 @@ state 69
     print_statement                shift and go to state 8
     type                           shift and go to state 9
 
-state 70
+state 69
 
     (18) conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .
 
@@ -1918,14 +1912,14 @@ state 70
     RBRACE          reduce using rule 18 (conditional -> ASSUMING expression LBRACE statement_list RBRACE otherwise_block .)
 
 
-state 71
+state 70
 
     (19) otherwise_block -> OTHERWISE . LBRACE statement_list RBRACE
 
-    LBRACE          shift and go to state 75
+    LBRACE          shift and go to state 74
 
 
-state 72
+state 71
 
     (20) otherwise_block -> empty .
 
@@ -1942,7 +1936,7 @@ state 72
     RBRACE          reduce using rule 20 (otherwise_block -> empty .)
 
 
-state 73
+state 72
 
     (21) loop -> LOOP LPAREN expression RPAREN LBRACE statement_list . RBRACE
     (2) statement_list -> statement_list . statement
@@ -1951,7 +1945,7 @@ state 73
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -1962,7 +1956,7 @@ state 73
     (13) type -> . CHAR
     (14) type -> . BOOL
 
-    RBRACE          shift and go to state 76
+    RBRACE          shift and go to state 75
     FUNCTION        shift and go to state 10
     ASSUMING        shift and go to state 11
     LOOP            shift and go to state 12
@@ -1981,7 +1975,7 @@ state 73
     print_statement                shift and go to state 8
     type                           shift and go to state 9
 
-state 74
+state 73
 
     (17) function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .
 
@@ -1998,7 +1992,7 @@ state 74
     RBRACE          reduce using rule 17 (function_definition -> FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE .)
 
 
-state 75
+state 74
 
     (19) otherwise_block -> OTHERWISE LBRACE . statement_list RBRACE
     (2) statement_list -> . statement_list statement
@@ -2008,7 +2002,7 @@ state 75
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -2029,7 +2023,7 @@ state 75
     CHAR            shift and go to state 17
     BOOL            shift and go to state 18
 
-    statement_list                 shift and go to state 77
+    statement_list                 shift and go to state 76
     statement                      shift and go to state 3
     declaration                    shift and go to state 4
     function_definition            shift and go to state 5
@@ -2038,7 +2032,7 @@ state 75
     print_statement                shift and go to state 8
     type                           shift and go to state 9
 
-state 76
+state 75
 
     (21) loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .
 
@@ -2055,7 +2049,7 @@ state 76
     RBRACE          reduce using rule 21 (loop -> LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE .)
 
 
-state 77
+state 76
 
     (19) otherwise_block -> OTHERWISE LBRACE statement_list . RBRACE
     (2) statement_list -> statement_list . statement
@@ -2064,7 +2058,7 @@ state 77
     (6) statement -> . conditional
     (7) statement -> . loop
     (8) statement -> . print_statement
-    (9) declaration -> . type COLON ID EQUAL expression SEMICOLON
+    (9) declaration -> . type ID EQUAL expression SEMICOLON
     (17) function_definition -> . FUNCTION ID LPAREN RPAREN LBRACE statement_list RBRACE
     (18) conditional -> . ASSUMING expression LBRACE statement_list RBRACE otherwise_block
     (21) loop -> . LOOP LPAREN expression RPAREN LBRACE statement_list RBRACE
@@ -2075,7 +2069,7 @@ state 77
     (13) type -> . CHAR
     (14) type -> . BOOL
 
-    RBRACE          shift and go to state 78
+    RBRACE          shift and go to state 77
     FUNCTION        shift and go to state 10
     ASSUMING        shift and go to state 11
     LOOP            shift and go to state 12
@@ -2094,7 +2088,7 @@ state 77
     print_statement                shift and go to state 8
     type                           shift and go to state 9
 
-state 78
+state 77
 
     (19) otherwise_block -> OTHERWISE LBRACE statement_list RBRACE .
 

@@ -1,8 +1,10 @@
 import tkinter as tk
+from lark import Lark
 from tkinter import scrolledtext, messagebox
+from grammar import argon_grammar
 from lexer import lexer
 from parse import parser, stringify_ast
-from interpreter import interpret
+from ATransformer import MyTransformer
 
 def lexical_analysis():
     code = txt_input.get("1.0", tk.END)
@@ -24,12 +26,15 @@ def syntactic_analysis():
 
 def semantic_analysis():
     code = txt_input.get("1.0", tk.END)
-    lexer.input(code)
-    ast = parser.parse(code, lexer=lexer)
-    result = interpret(ast)
-    txt_input.delete("1.0", tk.END)  
-    txt_input.insert("1.0", result)  
-    
+    transformer = MyTransformer()
+    parser2 = Lark(argon_grammar, start='start', parser='earley')
+    tree = parser2.parse(code)
+    transformer.transform(tree)
+    print(transformer.mensaje_funcion)
+    print(transformer.mensaje_if)
+    print(transformer.mensaje_loop)
+    print(transformer.mensaje_variable)
+
 app = tk.Tk()
 app.title("ARGON Language IDE")
 
@@ -45,7 +50,7 @@ btn_lexical.pack(side=tk.LEFT, padx=10)
 btn_syntactic = tk.Button(frame, text="Análisis Sintáctico", command=syntactic_analysis)
 btn_syntactic.pack(side=tk.LEFT, padx=10)
 
-btn_semantic = tk.Button(frame, text="Análisis Semántico", command=semantic_analysis)
+btn_semantic = tk.Button(frame, text="Intérprete Semántico", command=semantic_analysis)
 btn_semantic.pack(side=tk.LEFT, padx=10)
 
 app.mainloop()
