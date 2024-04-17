@@ -1,4 +1,5 @@
 from lark import Transformer, Tree, Token
+import lark
 class MyTransformer(Transformer):
     def __init__(self):
         self.variables = {}
@@ -9,7 +10,45 @@ class MyTransformer(Transformer):
         self.mensaje_funcion = ""
         self.mensaje_if = ""
         self.mensaje_loop = ""
+        self.mensaje_loopdos = ""
 
+    def variable_declaration(self, items):
+        print(items)
+
+        var_type = items[0].value.lower()
+
+        var_name = items[1].value
+
+        if items[2].children:
+            raw_value = items[2].children[0].value
+        else:
+            raw_value = items[2].value
+
+        print(f"Extracted values - Type: {var_type}, Name: {var_name}, Value: {raw_value}")
+
+        try:
+            if var_type == "int":
+                var_value = int(raw_value)
+            elif var_type == "float":
+                var_value = float(raw_value)
+            elif var_type == "string":
+                var_value = raw_value.strip("'").strip('"')
+            elif var_type == "char":
+                var_value = raw_value[0] if raw_value else ''
+            elif var_type == "bool":
+                var_value = raw_value.lower() in ("true", "1")
+            else:
+                raise ValueError(f"Tipo no soportado: {var_type}")
+        except ValueError as e:
+            print(f"Error al convertir el valor: {e}")
+            return None
+
+        self.variables[var_name] = var_value
+
+        mensaje = f"Variable '{var_name}' declarada con valor {var_value}\n"
+        self.mensaje_variable += mensaje
+
+        return (var_name, var_value)
 
     def function_declaration(self, items):
         func_name = items[0]  
@@ -64,71 +103,114 @@ class MyTransformer(Transformer):
             return left / right
 
     def conditional_declaration(self, items):
-            condition = items[0]
-            true_block = items[1].children  
-            false_block = items[2].children if len(items) > 2 else None  
+        condition = items[0]
+        true_block = items[1].children
+        false_block = items[2].children if len(items) > 2 else None
 
-            if self.evaluate_condition(condition):
-                true_results = [self.transform(statement) for statement in true_block]
-                self.mensaje_if = "La condición 'assuming' es verdadera.", true_results
+        if self.evaluate_condition(condition):
+            true_results = [self.transform(statement) for statement in true_block]
+            true_results_str = "\n".join(map(str, true_results))
+            self.mensaje_if = f"La condición 'assuming' es verdadera. Resultados:\n{true_results_str}"
+        else:
+            if false_block:
+                false_results = [self.transform(statement) for statement in false_block]
+                false_results_str = "\n".join(map(str, false_results))
+                self.mensaje_if = f"La condición 'assuming' es falsa. Resultados:\n{false_results_str}"
             else:
-                if false_block:
-                    false_results = [self.transform(statement) for statement in false_block]
-                    self.mensaje_if = "La condición 'assuming' es falsa.", false_results
-                else:
-                    self.mensaje_if = "La condición 'assuming' es falsa y no hay bloque 'otherwise'."
+                self.mensaje_if = "La condición 'assuming' es falsa y no hay bloque 'otherwise'."
 
     def loop_declaration(self, items):
         condition = items[0]
         body_statements = items[1].children if len(items) > 1 else []
 
+        outputs = []  # Lista para almacenar los resultados de las iteraciones
         self.mensaje_loop = "Evaluando bucle loop: "
-        loop_count = 0  
+        loop_count = 0
 
         while self.evaluate_condition(condition) and loop_count < 100:
+            iteration_outputs = []  # Lista para almacenar los outputs de esta iteración
             for statement in body_statements:
-                result = self.transform(statement)
-                self.statements.append(result)
-            self.mensaje_loop += f"Iteración {loop_count + 1} ejecutada. "
+                output = self.transform(statement)  # Transforma cada statement en un output
+                if isinstance(output, Tree):
+                    output = self.tree_to_string(output)  # Convierte Tree a string si necesario
+                iteration_outputs.append(output)
+
+            outputs.extend(iteration_outputs)
+            self.increment_control_variable(condition)  # Asegura incremento de la variable de control
             loop_count += 1
 
         if loop_count == 0:
             self.mensaje_loop += "La condición inicial del bucle loop es falsa; no se ejecuta el cuerpo."
         else:
-            self.mensaje_loop += f"Se ejecutaron {loop_count} iteraciones hasta que la condición fue falsa o se alcanzó el límite."
+            self.mensaje_loop += f"Se ejecutaron {loop_count} iteraciones hasta que la condición fue falsa o se alcanzó el límite.\n" + "\n".join(map(str, outputs))
 
-        return self.mensaje_loop
+    def tree_to_string(self, tree):
+        if isinstance(tree, Token):
+            # Si es un Token, simplemente retorna su valor
+            return tree.value
+        elif isinstance(tree, Tree):
+            # Si es un Tree, recorre sus hijos y conviértelos en strings
+            parts = []
+            for child in tree.children:
+                if isinstance(child, Token):
+                    # Para Tokens directos dentro del árbol
+                    parts.append(child.value)
+                elif isinstance(child, Tree):
+                    # Para subárboles, llama recursivamente a esta función
+                    parts.append(self.tree_to_string(child))
+                else:
+                    # Si hay otros tipos (debería ser inusual), convertirlos a string
+                    parts.append(str(child))
+            # Une todas las partes en una cadena de texto
+            return ' '.join(parts)
+        return str(tree)  # Como último recurso, convierte el objeto a string
+
+
+    def increment_control_variable(self, condition):
+        var_name = condition.children[0].value  # El identificador
+        if var_name in self.variables:
+            self.variables[var_name] += 1  # Incrementa la variable por 1
+
+
 
     def evaluate_condition(self, condition):
-        if not condition.children:
+        if not condition.children or len(condition.children) < 3:
             raise ValueError("Condición mal formada, faltan componentes.")
         
-        identifier = condition.children[0]
-        operator = condition.children[1]
-        value = condition.children[2]
+        identifier = condition.children[0].value  
+        operator = condition.children[1].value   
+        value_node = condition.children[2]      
 
-        identifier_value = self.variables.get(identifier.value)
+        identifier_value = self.variables.get(identifier)
 
         if identifier_value is None:
-            print(f"Variable {identifier.value} no definida.")
+            print(f"Variable {identifier} no definida.")
             return False
 
-        value_value = self.extract_value(value)
+        comparison_value = self.extract_value(value_node.children[0] if isinstance(value_node, lark.Tree) else value_node)
 
-        if isinstance(identifier_value, (int, float)) and isinstance(value_value, (int, float)):
-            return self.apply_comparator(float(identifier_value), operator.value, float(value_value))
+        if type(identifier_value) != type(comparison_value):
+            print(f"No se puede comparar {identifier_value} ({type(identifier_value)}) y {comparison_value} ({type(comparison_value)}) debido a incompatibilidad de tipos.")
+            return False
+
+        return self.apply_comparator(identifier_value, operator, comparison_value)
+
+
+    def extract_value(self, node):
+        if isinstance(node, lark.lexer.Token):
+            if node.type == 'INT_NUMBER':
+                return int(node.value)
+            elif node.type == 'FLOAT_NUMBER':
+                return float(node.value)
+            elif node.type == 'STRING':
+                return node.value.strip("'").strip('"')  
+            elif node.type == 'BOOLEAN':
+                return node.value.lower() in ['true', '1']  
+            else:
+                raise ValueError(f"No se puede manejar el tipo de token: {node.type}")
         else:
-            print(f"No se puede comparar {identifier_value} y {value_value} debido a incompatibilidad de tipos.")
-            return False
+            raise TypeError(f"Se esperaba un Token, pero se obtuvo: {type(node)}")
 
-    def extract_value(self, value):
-        if isinstance(value, Tree) and value.data == 'INT_NUMBER':
-            return int(value.children[0])
-        elif isinstance(value, Tree) and value.data == 'FLOAT_NUMBER':
-            return float(value.children[0])
-        elif isinstance(value, Tree) and value.data == 'BOOLEAN':
-            return value.children[0].lower() == 'true'
-        return value.children[0]  
 
     def apply_comparator(self, left, operator, right):
         if operator == "==":
@@ -144,5 +226,5 @@ class MyTransformer(Transformer):
         elif operator == "<=":
             return left <= right
         else:
-            raise ValueError(f"Unsupported operator: {operator}")
+            raise ValueError(f"Operador no soportado: {operator}")
         

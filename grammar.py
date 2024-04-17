@@ -6,8 +6,8 @@ instruction: variable_declaration
            | conditional_declaration
            | loop_declaration
 
-variable_declaration: type IDENTIFIER EQUAL value ";"
-type: "int" | "float" | "string" | "char" | "bool"
+variable_declaration: TYPE IDENTIFIER "=" value ";"
+TYPE: "int" | "float" | "string" | "char" | "bool"
 value: INT_NUMBER | FLOAT_NUMBER | STRING | BOOLEAN
 
 function_declaration: "function" IDENTIFIER "(" [parameter_list] ")" "{" [statement_list] "}"
@@ -31,10 +31,8 @@ BOOLEAN: "true" | "false"
 IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_]*/
 COMPARATOR: "==" | "!=" | ">=" | "<=" | ">" | "<"
 OPERATOR: "+" | "-" | "*" | "/"
-EQUAL: "="
 
 %import common.WS
-%import common.EQUAL
 %ignore WS
 """
 
