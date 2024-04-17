@@ -123,20 +123,20 @@ class MyTransformer(Transformer):
         condition = items[0]
         body_statements = items[1].children if len(items) > 1 else []
 
-        outputs = []  # Lista para almacenar los resultados de las iteraciones
+        outputs = []  
         self.mensaje_loop = "Evaluando bucle loop: "
         loop_count = 0
 
         while self.evaluate_condition(condition) and loop_count < 100:
-            iteration_outputs = []  # Lista para almacenar los outputs de esta iteración
+            iteration_outputs = []  
             for statement in body_statements:
-                output = self.transform(statement)  # Transforma cada statement en un output
+                output = self.transform(statement)  
                 if isinstance(output, Tree):
-                    output = self.tree_to_string(output)  # Convierte Tree a string si necesario
+                    output = self.tree_to_string(output)  
                 iteration_outputs.append(output)
 
             outputs.extend(iteration_outputs)
-            self.increment_control_variable(condition)  # Asegura incremento de la variable de control
+            self.increment_control_variable(condition)  
             loop_count += 1
 
         if loop_count == 0:
@@ -146,31 +146,30 @@ class MyTransformer(Transformer):
 
     def tree_to_string(self, tree):
         if isinstance(tree, Token):
-            # Si es un Token, simplemente retorna su valor
+            
             return tree.value
         elif isinstance(tree, Tree):
-            # Si es un Tree, recorre sus hijos y conviértelos en strings
+            
             parts = []
             for child in tree.children:
                 if isinstance(child, Token):
-                    # Para Tokens directos dentro del árbol
+                    
                     parts.append(child.value)
                 elif isinstance(child, Tree):
-                    # Para subárboles, llama recursivamente a esta función
+                    
                     parts.append(self.tree_to_string(child))
                 else:
-                    # Si hay otros tipos (debería ser inusual), convertirlos a string
+                  
                     parts.append(str(child))
-            # Une todas las partes en una cadena de texto
+       
             return ' '.join(parts)
-        return str(tree)  # Como último recurso, convierte el objeto a string
+        return str(tree) 
 
 
     def increment_control_variable(self, condition):
-        var_name = condition.children[0].value  # El identificador
+        var_name = condition.children[0].value  
         if var_name in self.variables:
-            self.variables[var_name] += 1  # Incrementa la variable por 1
-
+            self.variables[var_name] += 1  
 
 
     def evaluate_condition(self, condition):
